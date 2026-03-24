@@ -123,7 +123,7 @@ st.space('large')
 #Ubicamos la descripción de la actividad a delegar
 st.header('Compare price distribution between manufactures')
 #Indicamos cuales son las marcas a elegir en el primer select
-brand_to_select= car_data['brand']
+brand_to_select= car_data['brand'].unique()
 def clear_selection(option: int):
     if option == 1:
         st.session_state.first_manufacturer = None
