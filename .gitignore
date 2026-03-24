@@ -1,0 +1,7 @@
+# Virtual environments
+venv/
+ENV/
+env/
+vehicles_env/
+.venv
+
