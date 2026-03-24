@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go  # Importación de plotly.graph_objects como go
 import plotly.express as px
-
+# streamlit configuration container width
 st.html("""
 <style>
 section[data-testid="stMain"] > div[data-testid="stMainBlockContainer"] {
@@ -13,7 +13,7 @@ section[data-testid="stMain"] > div[data-testid="stMainBlockContainer"] {
 """)
 
 # Leer los datos del archivo CSV
-car_data = pd.read_csv('./Vehicles_us.csv')
+car_data = pd.read_csv('./vehicles_us.csv')
 # Insertar el primer titulo
 st.header('Data viewer')
 
