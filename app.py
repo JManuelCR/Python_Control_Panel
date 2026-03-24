@@ -21,16 +21,17 @@ st.header('Data viewer')
 car_data['brand'] = car_data['model'].str.split().str[0]
 # Reflejamos la data a una variable exclusiva para la tabla
 df = car_data
+# Contamos cuantos automóviles tenemos por marca
+brand_counts= df['brand'].value_counts()
+# Generamos el de las marcas a mantener discriminando las que tienen menos de 100 en su cuenta y guardamos su index
+brands_to_keep = brand_counts[brand_counts >= 100].index
+# se realiza la discrimination de la data por las marcas que se encuentran en la variable almacenada para la discriminación 
+df = df[df['brand'].isin(brands_to_keep)]
 
 # Generamos el filtro de despliegue de la data en la tabla
 # Por defecto el checkbox , queremos que muestre todas la marcas sin filtro. Una vez que se activa el filtro se genera el proceso de filtrado
 if st.checkbox('Include manufactures with less than 100 ads'):
-    # Contamos cuantos automóviles tenemos por marca
-    brand_counts= df['brand'].value_counts()
-    # Generamos el de las marcas a mantener discriminando las que tienen menos de 100 en su cuenta y guardamos su index
-    brands_to_keep = brand_counts[brand_counts < 100].index
-    # se realiza la discrimination de la data por las marcas que se encuentran en la variable almacenada para la discriminación 
-    df = df[df['brand'].isin(brands_to_keep)]
+    df= car_data
 # Se genera el la tabla en el DOM mediante el método dataframe de streamlit
 st.dataframe(df)
 
