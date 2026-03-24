@@ -1,0 +1,4 @@
+# Tem apara el render en el DOM de streamlit  de python
+[theme]
+backgroundColor = "#f0f2f6" # color de fondo principal
+secondaryBackgroundColor = "#e6f7ff"
