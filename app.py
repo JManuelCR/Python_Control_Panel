@@ -213,7 +213,7 @@ if selected_brands: # Si hay valores en selected_brands procedamos a la creació
         xaxis_title='Price ($)', # titulo del eje x
         yaxis_title='Percentage (%)' if is_normalized else 'Count', # titulo del eje y
         legend_title='Manufacturers', # Titulo de las labels del lado derecho
-        template='plotly_white' # titulo del gráfico,
+        template='plotly_white', # titulo del gráfico
         xaxis=dict(tickangle=45) # Se asigna una rotación de 45° en las labels del eje x
     )
 
