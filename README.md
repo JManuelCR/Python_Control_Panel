@@ -116,6 +116,9 @@ This project is part of a data science course (Sprint 7).
 
 Jose Cabrera
 
+## 🌏 Visit web service on Render
+ [https://python-control-panel.onrender.com](https://python-control-panel.onrender.com)
+
 ---
 
 **Last Updated**: March 2026
