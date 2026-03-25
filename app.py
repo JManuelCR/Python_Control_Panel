@@ -188,7 +188,7 @@ if selected_brands: # Si hay valores en selected_brands procedamos a la creació
 
 
     for i, brand in enumerate(selected_brands): # Por medio del enumerable se itera sobre los valores de las marcas seleccionadas por el usuario apoyándonos en el valor del indices "i" para fines de estilos
-        subset = comparison_df[comparison_df['brand'] == brand] # Se genera el subset de la data agrupada por conteo de marca precio discriminandola por la marca seleccionada
+        subset = comparison_df[comparison_df['brand'] == brand] # Se genera el subset de la data agrupada por conteo de marca precio discriminando la por la marca seleccionada
 
         y_values = subset['count']#  Se asigna el valor del eje y del gráfico a los valores de subset en su columna count
         if is_normalized: # si el checkbox de normalize esta activo:
@@ -213,7 +213,7 @@ if selected_brands: # Si hay valores en selected_brands procedamos a la creació
         xaxis_title='Price ($)', # titulo del eje x
         yaxis_title='Percentage (%)' if is_normalized else 'Count', # titulo del eje y
         legend_title='Manufacturers', # Titulo de las labels del lado derecho
-        template='plotly_white' # titulo del gráfico,
+        template='plotly_white', # titulo del gráfico
         xaxis=dict(tickangle=45) # Se asigna una rotación de 45° en las labels del eje x
     )
 
