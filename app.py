@@ -11,16 +11,19 @@ section[data-testid="stMain"] > div[data-testid="stMainBlockContainer"] {
 }
 </style>
 """)
+# Generamos el registo en cache para evitar un loading my prolongado
+@st.cache_data
+def load_data():
+    # Leer los datos del archivo CSV
+    car_data = pd.read_csv('./vehicles_us.csv')
+    # Insertar el primer titulo
+    st.header('Data viewer')
 
-# Leer los datos del archivo CSV
-car_data = pd.read_csv('./vehicles_us.csv')
-# Insertar el primer titulo
-st.header('Data viewer')
-
-# Extraer la marca y la mostramos en la columna llamada 'brand'
-car_data['brand'] = car_data['model'].str.split().str[0]
+    # Extraer la marca y la mostramos en la columna llamada 'brand'
+    car_data['brand'] = car_data['model'].str.split().str[0]
+    return car_data
 # Reflejamos la data a una variable exclusiva para la tabla
-df = car_data
+df = load_data()
 # Contamos cuantos automóviles tenemos por marca
 brand_counts= df['brand'].value_counts()
 # Generamos el de las marcas a mantener discriminando las que tienen menos de 100 en su cuenta y guardamos su index
