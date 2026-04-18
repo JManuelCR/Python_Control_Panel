@@ -17,9 +17,6 @@ section[data-testid="stMain"] > div[data-testid="stMainBlockContainer"] {
 def load_data():
     # Leer los datos del archivo CSV
     car_data = pd.read_csv('./vehicles_us.csv')
-    # Insertar el primer titulo
-    st.header('Data viewer')
-
     # Extraer la marca y la mostramos en la columna llamada 'brand'
     car_data['brand'] = car_data['model'].str.split().str[0]
     return car_data
@@ -31,6 +28,9 @@ brand_counts= df['brand'].value_counts()
 brands_to_keep = brand_counts[brand_counts >= 100].index
 # se realiza la discrimination de la data por las marcas que se encuentran en la variable almacenada para la discriminación 
 df = df[df['brand'].isin(brands_to_keep)]
+
+# Insertar el primer titulo
+st.header('Data viewer')
 
 # Generamos el filtro de despliegue de la data en la tabla
 # Por defecto el checkbox , queremos que muestre todas la marcas sin filtro. Una vez que se activa el filtro se genera el proceso de filtrado
