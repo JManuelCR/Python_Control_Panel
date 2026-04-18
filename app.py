@@ -74,8 +74,9 @@ fig.update_layout(
     legend_title="Tipo de Vehículo", # Titulo del gráfico
     template="plotly_white", # Fondo blanco para que los colores resalten
     xaxis={'categoryorder':'total descending'}, # Ordena de mayor a menor,
-    xaxis=dict(tickangle=45) # Se lle da una inclination a las labels del eje x
 )
+fig.update_xaxes(tickangle=45) # Se lle da una inclination a las labels del eje x
+
 # Lógica a ejecutar cuando se hace clic en el botón
 if hist_button:
     st.plotly_chart(fig) # Se genera el gráfico en el DOM
