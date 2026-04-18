@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go  # Importación de plotly.graph_objects como go
 import plotly.express as px
+
 # streamlit configuration container width
 st.html("""
 <style>
@@ -34,7 +35,7 @@ df = df[df['brand'].isin(brands_to_keep)]
 # Generamos el filtro de despliegue de la data en la tabla
 # Por defecto el checkbox , queremos que muestre todas la marcas sin filtro. Una vez que se activa el filtro se genera el proceso de filtrado
 if st.checkbox('Include manufactures with less than 100 ads'):
-    df= car_data
+    df= load_data()
 # Se genera el la tabla en el DOM mediante el método dataframe de streamlit
 st.dataframe(df)
 
@@ -47,7 +48,7 @@ st.header('Vehicles types by manufacturer')
 hist_button = st.button('Build histogram')
 
 # 1. Agrupamos por fabricante y por modelo ademas de contar las filas
-brand_count = car_data.groupby(['brand', 'type']).size().reset_index(name='count')
+brand_count = load_data().groupby(['brand', 'type']).size().reset_index(name='count')
 
 # Lista de todos los tipos de vehículos que servirá las leyendas
 vehicle_types = brand_count['type'].unique()
@@ -91,7 +92,7 @@ st.space('large') # Se agrega un espacio separador de area
 hist_cond_vs_model = go.Figure()
 
 # Agrupamos la data con respecto al año y condición 
-condition_count = car_data.groupby(['model_year', 'condition']).size().reset_index(name='count')
+condition_count = load_data().groupby(['model_year', 'condition']).size().reset_index(name='count')
 
 
 # asignación de colores profesionales para dar mejor presentation al gráfico
@@ -131,7 +132,7 @@ st.space('large')
 #Ubicamos la descripción de la actividad a delegar
 st.header('Compare price distribution between manufactures')
 #Indicamos cuales son las marcas a elegir en el primer select
-brand_to_select= car_data['brand'].unique() # Se genera el filtro de marcas de la data para encontrar las marcas de autos
+brand_to_select= load_data()['brand'].unique() # Se genera el filtro de marcas de la data para encontrar las marcas de autos
 
 #-------------------------------------------------------------------------------------------------------------
 #Selectores de marcas a comparar en el gráfico
@@ -184,7 +185,7 @@ st.space('small')
 selected_brands = [b for b in [manufacture_first_selection, manufacture_second_selection] if b is not None]
 if selected_brands: # Si hay valores en selected_brands procedamos a la creación del gráfico evitando errores al generar el gráfico con valores None
     st.header(f"Price distribution for: {', '.join(selected_brands).title()}") # se asigna el titulo del gráfico indicando las opciones seleccionadas por el usuario
-    filter_data = car_data[car_data['brand'].isin(selected_brands)] # Filtramos la data origina en base a las marcas seleccionadas
+    filter_data = load_data()[load_data()['brand'].isin(selected_brands)] # Filtramos la data origina en base a las marcas seleccionadas
     is_normalized = st.checkbox('Normalize histogram') # Se genera la variable contenedora del checkbox de normalización de datos
     comparison_df = filter_data.groupby(['brand', 'price']).size().reset_index(name='count') # Se genera la tabla de conteo de los grupos de datos en base a marca y precio asignando el nombre de  " count " al conteo
     compare_manufacturer_hist = go.Figure() # Se genera la variable referencia del gráfico a mostrar con go
